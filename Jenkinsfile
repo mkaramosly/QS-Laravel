@@ -1,4 +1,4 @@
-node ('CD Node') {
+node{
    
    try {
 		// Mark the code checkout 'stage'....
