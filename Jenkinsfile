@@ -1,4 +1,4 @@
-node('CI_Node'){
+node{
    
    try {
 		// Mark the code checkout 'stage'....
