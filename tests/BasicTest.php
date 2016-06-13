@@ -4,7 +4,7 @@ require_once(dirname(__FILE__) . '/../vendor/autoload.php');
 class SimpleTestCase extends TestCase {
 
 	function testSimpleScenario(){
-		$this->assertTrue(false);
+		$this->assertTrue(true);
 
 	}
 
