@@ -18,7 +18,11 @@ node{
 		stage 'Build'
 		// 	Run the maven build
 		//  sh "${mvnHome}/bin/mvn clean install"
-		sh "composer update"
+		
+		def foo = '/usr/local/bin/composer'
+		sh "command -v ${foo} >/dev/null 2>&1 || { echo >&2 \"I require ${foo} but it s not installed.  Aborting.\"; }"
+		
+		sh "/usr/local/bin/composer update"
 		echo 'Build Stage Done!'
 		
 		stage 'Test'
