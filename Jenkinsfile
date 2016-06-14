@@ -25,16 +25,18 @@ node{
 		stage 'Upload to S3'
 		def buildBucket = 'empower-jenkins-artifacts-devint'
 		
-		def thr = Thread.currentThread()
-		def build = thr?.executable
+		/*
+			def thr = Thread.currentThread()
+			def build = thr?.executable
 
-		def jobURL = build.envVars.BUILD_URL
-		def buildId = build.envVars.BUILD_ID
-		def projectName = build.envVars.PROJECT_NAME
-		echo " ${projectName} ${buildId} ${jobName} ${jobURL} " 
+			def jobURL = build.envVars.BUILD_URL
+			def buildId = build.envVars.BUILD_ID
+			def projectName = build.envVars.PROJECT_NAME
+			echo " ${projectName} ${buildId} ${jobName} ${jobURL} " 
+		*/
 		
-		sh "zip -r ${buildId}.zip * "
-		sh "aws s3 cp ${buildId}.zip s3://${buildBucket}/jobs/${projectName}/${buildId}/${buildId}.zip"
+		sh "zip -r project.zip * "
+		sh "aws s3 cp project.zip s3://${buildBucket}/jobs/pipeline/project.zip "
 	
 	} catch (Exception e) {
 		error "Operation failed: ${e}"
