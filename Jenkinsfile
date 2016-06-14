@@ -26,7 +26,7 @@ node{
 		def buildBucket = 'empower-jenkins-artifacts-devint'
 		
 		sh "zip -r ${env.BUILD_ID}.zip * "
-		sh "aws s3 cp ${env.BUILD_ID}.zip s3://${buildBucket}/jobs/${env.PROJECT_NAME}/${env.BUILD_ID}.zip "
+		sh "aws s3 cp ${env.BUILD_ID}.zip s3://${buildBucket}/jobs/${env.JOB_NAME}/${env.BUILD_ID}.zip "
 	
 	} catch (Exception e) {
 		error "Operation failed: ${e}"
