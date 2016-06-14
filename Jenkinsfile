@@ -28,7 +28,8 @@ node{
 		stage 'Upload to S3'
 		def buildBucket = 'empower-jenkins-artifacts-devint'
 		
-		sh "zip -r ${env.BUILD_ID}.zip * "
+		// Zipping all files except git related files and the build folder.
+		sh "zip -r ${env.BUILD_ID}.zip * .* -x *.git* build "
 		echo 'Compression of the build Done!'
 		
 		sh "aws s3 cp ${env.BUILD_ID}.zip s3://${buildBucket}/jobs/${env.JOB_NAME}/${env.BUILD_ID}.zip "
