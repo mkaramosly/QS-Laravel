@@ -1,3 +1,5 @@
+#!groovy
+
 node{
    
    try {
@@ -31,7 +33,13 @@ node{
 		
 		sh "aws s3 cp ${env.BUILD_ID}.zip s3://${buildBucket}/jobs/${env.JOB_NAME}/${env.BUILD_ID}.zip "
 		echo 'Uploading to S3, Done!'
-	
+		
+		// Removing the artifacts zip package once we are done!
+		// sh "rm -rf ${env.BUILD_ID}.zip"
+		
+		// Removing old compressed articats. 
+		sh "rm -rf [0-9]*.zip"
+		
 	} catch (Exception e) {
 		error "Operation failed: ${e}"
 	}
