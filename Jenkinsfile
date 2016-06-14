@@ -25,8 +25,28 @@ node{
 		stage 'Upload to S3'
 		def buildBucket = 'empower-jenkins-artifacts-devint'
 
-		sh "zip -r $BUILD_ID.zip * "
-		sh "aws s3 cp $BUILD_ID.zip s3://${buildBucket}/jobs/$PROJECT_NAME/$BUILD_ID/$BUILD_ID.zip"
+		/*
+		number
+		result (typically SUCCESS, UNSTABLE, or FAILED)
+		displayName
+		description
+		id
+		timeInMillis
+		startTimeInMillis
+		duration
+		building
+		inProgress
+		previousBuild (another similar object)
+		nextBuild
+		absoluteUrl */
+		
+		echo "id: ${id}"
+		echo "displayName: ${displayName}"
+		echo "absoluteUrl: ${absoluteUrl}"
+		echo "Build Number: $BUILD_NUMBER "
+		
+		sh "zip -r $BUILD_NUMBER.zip * "
+		sh "aws s3 cp $BUILD_NUMBER.zip s3://${buildBucket}/jobs/$PROJECT_NAME/$BUILD_NUMBER/$BUILD_NUMBER.zip"
 	
 	} catch (Exception e) {
 		error "Operation failed: ${e}"
