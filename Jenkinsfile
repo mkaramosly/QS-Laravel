@@ -10,7 +10,7 @@ node{
 		
 		// git([url: 'git@github.com:Breakthrough-Technologies/eMPower-TAP.git', branch: 'develop'])
 
-		echo 'Checkout Stage Done!'
+		echo 'Checkout Stage Done!!'
 
 		// Mark the code build 'stage'....
 		stage 'Build'
